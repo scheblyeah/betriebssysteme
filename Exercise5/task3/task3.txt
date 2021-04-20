@@ -1,0 +1,35 @@
+Manche Antworten zu den Fragen wurden 1:1 von meiner Abgabe letzes Jahr übernommen. 
+
+a)Beim shared memory greifen meherere Prozesse auf den selben Speicher zu, und wenn ein Prozess die Daten ändert,
+dann greifen alle Prozesse auf den veränderten Speicher zu. Nachdem man mit fork() child prozesse erstellt, können
+diese auf die globalen Variablen zugreifen, aber jeder Prozess hat jetzt eine Kopie von dem Programmspeicher und
+die Änderung der globalen Variable beinflussen den anderen Prozess nicht. 
+
+b)+c) Eine Race Condition tritt auf, wenn zwei oder mehr Threads auf gemeinsam genutzte Daten zugreifen können und 
+gleichzeitig versuchen, diese zu ändern. Da der Thread-Scheduling-Algorithmus jederzeit zwischen Threads
+wechseln kann, wissen Sie nicht, in welcher Reihenfolge die Threads versuchen werden, auf die gemeinsam
+genutzten Daten zuzugreifen. Daher hängt das Ergebnis der Datenänderung vom Thread-Scheduling-Algorithmus ab,
+d.h. beide Threads "racen" um die Daten zuzugreifen/zu ändern.
+
+d) der output kann auch richtig sein, wenn die threads zur richtigen zeit verarbeitet werden ist das Ergebnis
+richtig, aber dies kann bei einer Race-condition nicht garantiert werden.
+
+e)Bei einer Race-condition ist der ausgang unvorhersehbar, deshalb könnte durch zufall auch sehr oft das Richtige
+ ausgegeben werden, also ja.
+
+f) Synchronisation oder nebenläufigkeit bedeutet, dass mehrere Prozesse oder Threads gleichzeitig ausgeführt werden.
+Um dies zu machen, müssen die Prozesse kommunizieren, Ressourcen gemeinsam nutzen, usw.
+Dies ist in unserem Fall für Mehrprogrammbetrieb, strukturierte parallele Anwendungen und Betriebssystemstruktur
+von Bedeutung.  
+
+g) Beim Producer - consumer Pattern ist das Problem, dass der Producer nichts produzieren soll, wenn der buffer 
+voll ist und das der Consumer nichts konsumiert wenn der buffer leer ist. Mit Semaphores wartet der Producer,
+wenn der buffer voll ist und der Consumer gibt dem Producer ein signal, wenn er etwas konsumiert hat und der 
+Buffer somit wieder platz hat. Wenn der Buffer leer ist, funktioniert es umgekehrt, dass der Producer dem
+Consumer ein signal gibt, wenn der Buffer nicht mehr leer ist. 
+
+h) Um Posix semaphore zu erstellen gibt es die Funktionen sem_init() und sem_open(). sem_init() wird für Prozesse
+oder Threads benutzt, sem_open() wird für ipc (z.b. shared memory von task2) verwendet. 
+
+i) Ich glaube nicht, da man wie in Antwort g) beschrieben eine Semephore braucht, um zu locken wenn der Producer 
+produziert und eine Semaphore um zu locken, wenn der consumer konsumiert.
